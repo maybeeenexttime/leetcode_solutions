@@ -16,6 +16,7 @@ public class NumArray{
     public int sumRange(int left, int right) {
 
         return left == 0? sumRange[right]: sumRange[right] - sumRange[left - 1];
+        //выводим сумму слевого по правый включая левый
     }
 
     public static void main(String[] args) {
