@@ -15,8 +15,6 @@ public class Solution {
            }
             areaSum = Math.max(areaSum, currentArea);
         }
-
-
         return areaSum;
     }
 
