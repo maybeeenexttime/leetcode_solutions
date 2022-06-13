@@ -1,43 +1,63 @@
 package leetcode_148;
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 public class Solution {
-     public class ListNode {
-     int val;
-     ListNode next;
-     ListNode() {}
-     ListNode(int val) { this.val = val; }
-     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-     }
+
+//     PriorityQueue<ListNode> queue = new PriorityQueue<>();
+
 
     public ListNode sortList(ListNode head) {
-       Solution solution = new Solution();
-       solution.toSort(head);
-       return head;
-    }
 
-    public void toSort(ListNode head){
-        ListNode current = head;
-        ListNode index = null;
-        int temp;
+        PriorityQueue<ListNode> queue = new PriorityQueue<ListNode>(comparator);
 
-        if(head == null){ return;}
-        else {
-            while (current != null){
-                index = current.next;
-                while (index != null){
-                    if(current.val > index.val){
-                        temp = current.val;
-                        current.val = index.val;
-                        index.val = temp;
-                    }
-                    index = index.next;
-                }
-                current = current.next;
-            }
+        while (head != null){
+            ListNode toAdd = head;
+            head = head.next;
+            toAdd.next = null;
+            queue.add(toAdd);
+
         }
+        ListNode result = new ListNode(-1000);
+        ListNode dummy = new ListNode();
+        dummy = result;
+        while (!queue.isEmpty()){
+            result.next = queue.poll();
+
+            result = result.next;
+        }
+
+
+       return dummy.next;
     }
+
+    public static Comparator<ListNode> comparator = new Comparator<ListNode>() {
+        @Override
+        public int compare(ListNode o1, ListNode o2) {
+            return o1.val - o2.val;
+        }
+    };
+
 
     public static void main(String[] args) {
+        ListNode first = new ListNode( -1);
+        ListNode second = new ListNode(5);
+        ListNode third = new ListNode(3);
+        ListNode fourth = new ListNode(4);
+        ListNode fifth = new ListNode(0);
+        first.next = second;
+        second.next = third;
+        third.next = fourth;
+        fourth.next = fifth;
 
+        Solution solution = new Solution();
+        ListNode res = solution.sortList(first);
+        while (res != null){
+            System.out.println(res.val);
+            res = res.next;
+        }
     }
 }
+
+
