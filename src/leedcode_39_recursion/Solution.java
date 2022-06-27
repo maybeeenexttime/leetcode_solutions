@@ -1,4 +1,4 @@
-package leedcode_39;
+package leedcode_39_recursion;
 
 import java.util.ArrayList;
 import java.util.List;
