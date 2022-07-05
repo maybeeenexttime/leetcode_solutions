@@ -29,6 +29,7 @@ public class Solution {
                for (String x: curstr){
                    temp.add(s + x);
                }
+
            }
            result = temp;
         }
